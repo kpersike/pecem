@@ -1,0 +1,1689 @@
+{
+  "name": "Pecem",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e1a54420-ddc6-40a7-a635-575e6c88ddb5",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "message.waiting",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "f523e874-17f9-433a-8f45-ca73be0d3097",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "message.edited",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "c69b9bd6-b532-4bf1-aab5-a55f33828afe",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "group.v2.update",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "7ecf4d2a-ec27-43ae-8b42-2893f30c7fe7",
+              "leftValue": "={{ $json.body.payload.from[($json.body.payload.from).indexOf('@')+1] }}",
+              "rightValue": "g",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        176,
+        480
+      ],
+      "id": "3e927f1e-4281-4bdc-bb7c-0f675260e436",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cd7c266a-3f37-4b43-bfd9-81769f8bc2d8",
+              "leftValue": "={{ $('Webhook').item.json.body.payload.hasMedia }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        384,
+        480
+      ],
+      "id": "5004fcf9-1e9a-4305-bd5a-f8072747af59",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bee4376a-5382-4b86-b70c-e7c8408600c5",
+              "name": "session",
+              "value": "={{ $json.body.session }}",
+              "type": "string"
+            },
+            {
+              "id": "4421c124-4ccb-4878-ab9c-22b09c1d942d",
+              "name": "chatId",
+              "value": "={{ $json.body.payload.from }}",
+              "type": "string"
+            },
+            {
+              "id": "ca56fef9-75fa-4132-a9ac-8566e1632161",
+              "name": "pushName",
+              "value": "={{ $json.body.payload._data.pushName }}",
+              "type": "string"
+            },
+            {
+              "id": "594e1f0a-03cf-464d-bb9b-ab99aa69f64a",
+              "name": "payload_id",
+              "value": "={{ $json.body.payload.id }}",
+              "type": "string"
+            },
+            {
+              "id": "bf41fc7a-dff0-485a-998e-4825848d8cb4",
+              "name": "event",
+              "value": "={{ $json.body.event }}",
+              "type": "string"
+            },
+            {
+              "id": "34534994-00fe-4eef-ba15-419ef0f06fe5",
+              "name": "message",
+              "value": "={{ $json.body.payload.body }}",
+              "type": "string"
+            },
+            {
+              "id": "d5745278-41f7-4ab2-b50f-bdb2f2025f4a",
+              "name": "fromMe",
+              "value": "={{ $json.body.payload.fromMe }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        704,
+        368
+      ],
+      "id": "1e1530e8-58ac-49ab-b5e8-85880149dba2",
+      "name": "Filtrar texto"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bee4376a-5382-4b86-b70c-e7c8408600c5",
+              "name": "session",
+              "value": "={{ $json.body.session }}",
+              "type": "string"
+            },
+            {
+              "id": "4421c124-4ccb-4878-ab9c-22b09c1d942d",
+              "name": "chatId",
+              "value": "={{ $json.body.payload.from }}",
+              "type": "string"
+            },
+            {
+              "id": "ca56fef9-75fa-4132-a9ac-8566e1632161",
+              "name": "pushName",
+              "value": "={{ $json.body.payload._data.pushName }}",
+              "type": "string"
+            },
+            {
+              "id": "594e1f0a-03cf-464d-bb9b-ab99aa69f64a",
+              "name": "payload_id",
+              "value": "={{ $json.body.payload.id }}",
+              "type": "string"
+            },
+            {
+              "id": "bf41fc7a-dff0-485a-998e-4825848d8cb4",
+              "name": "event",
+              "value": "={{ $json.body.event }}",
+              "type": "string"
+            },
+            {
+              "id": "34534994-00fe-4eef-ba15-419ef0f06fe5",
+              "name": "message_media",
+              "value": "={{ $json.body.payload.media.url }}",
+              "type": "string"
+            },
+            {
+              "id": "c6c3b0e3-1c6b-4498-9dd0-93c8dfe3fa69",
+              "name": "fileName",
+              "value": "={{ $json.body.payload.media.filename }}",
+              "type": "string"
+            },
+            {
+              "id": "f65a748a-c135-41a0-bbb6-be364b4174af",
+              "name": "caption",
+              "value": "={{ $('Filter').item.json.body.payload._data.message.documentMessage.caption }}",
+              "type": "string"
+            },
+            {
+              "id": "d5745278-41f7-4ab2-b50f-bdb2f2025f4a",
+              "name": "fromMe",
+              "value": "={{ $json.body.payload.fromMe }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        704,
+        544
+      ],
+      "id": "87e0ef80-c1b9-46b6-a503-bb9b78ddccfb",
+      "name": "Filtrar mídia"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.message_media }}",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1104,
+        544
+      ],
+      "id": "3a65e893-7dc0-45a1-a8be-dba1e7716456",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const urlMedia = $input.first().json.message_media;\n\nif (!urlMedia) {\n  return { json: { error: 'URL de mídia não encontrada no payload' } };\n}\n\nconst urlReplaced = urlMedia.replace('localhost', 'waha');\nconst fileExtension = urlReplaced.slice(urlReplaced.indexOf('.', -1));\n\nreturn { \n  json: { \n    \"message_media\": urlReplaced,\n    \"fileExtension\": fileExtension,\n  } \n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        912,
+        544
+      ],
+      "id": "5f55bf25-d62f-4e90-8d8e-0147a3f4645f",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "inputType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        624
+      ],
+      "id": "840900c8-4cea-4286-8d0c-ddec8d629b46",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "56sPSpTM7ScKV6tj",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## IA de transcrever áudio\n\nEsse _node_ é responsável por transcrever mensagens de áudio para texto. Com isso, gera-se conteúdo para ser interpretado por um Agente de IA.",
+        "height": 240,
+        "width": 352,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1504,
+        784
+      ],
+      "typeVersion": 1,
+      "id": "9948b445-4239-42b5-94e7-b701cbb7135a",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "01fc74ba-31ad-4be0-9e59-381b9dcf87a4",
+              "name": "message",
+              "value": "={{ $json.content.parts[0].text }}",
+              "type": "string"
+            },
+            {
+              "id": "94cf0c53-ab2f-455e-8e6d-5f61dfb725c0",
+              "name": "session",
+              "value": "={{ $('Filtrar mídia').item.json.session }}",
+              "type": "string"
+            },
+            {
+              "id": "08973c1d-e14b-4a1d-b38b-8d21e4f97376",
+              "name": "chatId",
+              "value": "={{ $('Filtrar mídia').item.json.chatId }}",
+              "type": "string"
+            },
+            {
+              "id": "b08bd328-6c7d-44f1-85d0-574ca41d3bb0",
+              "name": "payload_id",
+              "value": "={{ $('Filtrar mídia').item.json.payload_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1728,
+        624
+      ],
+      "id": "de43b032-89bf-4267-b5ef-afbe52e11881",
+      "name": "Mensagem de áudio",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2208,
+        384
+      ],
+      "id": "ba3dcc74-f36e-44a5-a1d6-dda146b6dbd7",
+      "name": "Merge",
+      "alwaysOutputData": false,
+      "executeOnce": false,
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "content": "## Tratamento de mensagem de mídia\n\nEsse trecho do fluxo trata-se de conteúdos de mídia, como PDF, áudio e imagens - este último a discutir.",
+        "width": 384,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        704,
+        704
+      ],
+      "typeVersion": 1,
+      "id": "d0393f09-6eaa-4dde-8994-f70666863c8e",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        464
+      ],
+      "id": "8793feaf-cff5-4a62-9b24-e09bbe12eea3",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "60c7ed24-fb77-4274-86f4-3f58fe103f4a",
+              "name": "message",
+              "value": "=<ContextoPDF>\n  <TranscricaoPDF>\n    {{ $json.text }}\n  </TranscricaoPDF>\n\n  <MensagemUsuario>\n    {{ $('Filtrar mídia').item.json.caption }}\n  </MensagemUsuario>\n\n  <TituloDocumento>\n    {{ $('Filtrar mídia').item.json.fileName }}\n  </TituloDocumento>\n</ContextoPDF>",
+              "type": "string"
+            },
+            {
+              "id": "1d8e3f0e-1d19-41b3-bc4e-d229a60c68a2",
+              "name": "session",
+              "value": "={{ $('Filtrar mídia').item.json.session }}",
+              "type": "string"
+            },
+            {
+              "id": "9a12506d-e4ae-43f2-8205-2d6435f5f605",
+              "name": "chatId",
+              "value": "={{ $('Filtrar mídia').item.json.chatId }}",
+              "type": "string"
+            },
+            {
+              "id": "5278acdf-8244-460a-bdc2-a5dea9f568c6",
+              "name": "payload_id",
+              "value": "={{ $('Filtrar mídia').item.json.payload_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1728,
+        464
+      ],
+      "id": "0b9bd71b-0a03-404e-8f70-334d93cab7ce",
+      "name": "Tratar mensagem de PDF"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f136a9ff-e40f-4084-a751-1e1926800d27",
+                    "leftValue": "={{ $json.fileExtension }}",
+                    "rightValue": ".pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "373883b9-4a44-4015-ba53-20e658df0120",
+                    "leftValue": "={{ [\".oga\", \".ogg\", \".opus\", \".m4a\"].includes($json.fileExtension).toBoolean() }}",
+                    "rightValue": "=true",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1280,
+        544
+      ],
+      "id": "26c69e4d-820d-4e23-a4ce-16d6c5e25392",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Seen",
+        "session": "={{ $('Merge').item.json.session }}",
+        "chatId": "={{ $('Merge').item.json.chatId }}",
+        "messageId": "={{ $('Merge').item.json.payload_id }}",
+        "participant": "",
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-waha.WAHA",
+      "typeVersion": 202411,
+      "position": [
+        2768,
+        320
+      ],
+      "id": "07a7a56e-e434-4556-b461-2c5d1d818f83",
+      "name": "Send Seen",
+      "credentials": {
+        "wahaApi": {
+          "id": "JDr0o0OT1IFVB3T4",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Chatting",
+        "operation": "Send Text",
+        "session": "={{ $('Merge').item.json.session }}",
+        "chatId": "={{ $('Merge').item.json.chatId }}",
+        "text": "={{ $('AI Agent').item.json.output }}",
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-waha.WAHA",
+      "typeVersion": 202411,
+      "position": [
+        2992,
+        320
+      ],
+      "id": "164ada3f-be5d-43fc-8bd2-4a3b762df656",
+      "name": "Send a text message",
+      "credentials": {
+        "wahaApi": {
+          "id": "JDr0o0OT1IFVB3T4",
+          "name": "WAHA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "webhook",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -48,
+        480
+      ],
+      "id": "adfc7d40-298a-4c03-a97c-5050d01bb1fd",
+      "name": "Webhook",
+      "webhookId": "7ab52721-b273-4d40-b9a8-e93cd7cd659d"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Agente de vagas para todas as ações relacionadas a consultar, pesquisar e relacionar vagas",
+        "text": "=# Visão Geral\n\nIdentifique qual é a intenção do usuário, se ele quiser saber de vagas, retorne as vagas compatíveis.\nSe ele quiser saber de capacitações, indique cursos de capacitações disponíveis. Jamais retorne somente o que você pode fazer. Retorne informações úteis.\n\nVocê é um assistente de gerenciamento de oportunidades. Suas responsabilidades incluem buscar vagas, capacitações, oportunidades, novidades, além de verificar quais se enquadram mais ao perfil do candidato e condizem com sua formação e área de atuação.\n\n**Gerenciamento de Vagas**\n\n* Use \"Get Jobs\" para selecionar as vagas compatíveis. Você deve analisar bem o currículo e alinhamento comportamental do candidato para com a vaga, para assim ter maior assertividade e satisfação do usuário. Acaso você não conheça bem o candidato, recomenda as vagas mais aproximadas e pergunte se elas estão de acordo com o interesse dele.\n\n**Gerenciamento de Capacitações**\n\n* Use \"Get Capacitacoes\" para indicar capacitações, cursos e certificações adequadas ao perfil e metas do candidato ou do interesse dele. Você deve analisar bem o currículo e alinhamento comportamental do candidato para com a capacitação, considerando também o tempo para concluir a mesma e indicar isso ao candidato.\n\n**Gerenciamento de Novidades**\n\n* Use \"Get Novidades\" para indicar novidades gerais que possam ser do interesse do usuário. Use como base as notícias e eventos fornecidas pela nossa base de dados. As novidades são as últimas prioridades que deve focar, a menos que o usuário solicite.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        2528,
+        688
+      ],
+      "id": "df6d7ad2-bafb-4a1b-81ba-c8d47e1597f9",
+      "name": "Recommendation AI"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "/*\nTabela vagas\nCREATE TABLE IF NOT EXISTS vagas (\n  id SERIAL PRIMARY KEY,\n  titulo VARCHAR(255),\n  area VARCHAR(100),\n  nivel VARCHAR(50),\n  tipo_contrato VARCHAR(50),\n  localizacao VARCHAR(100),\n  modalidade VARCHAR(50),\n  requisitos TEXT,\n  beneficios TEXT,\n  data_publicacao DATE,\n  link_candidatura TEXT,\n  status VARCHAR(50)\n);\n\nInserção de vagas na tabela vagas\nINSERT INTO vagas (titulo, area, nivel, tipo_contrato, localizacao, modalidade, requisitos, beneficios, data_publicacao, link_candidatura, status) VALUES\n('Auxiliar de Logística', 'Logística', 'Júnior', 'CLT', 'Campinas', 'Presencial', 'Ensino médio completo, organização', 'VT, VR, plano de saúde', '2025-11-22', 'https://empresa.com/v001', 'Aberta'),\n('Estagiário de Marketing', 'Marketing', 'Estágio', 'Estágio', 'Remoto', 'Remoto', 'Cursando Publicidade ou Marketing, criatividade', 'Bolsa, VT', '2025-11-22', 'https://empresa.com/v002', 'Aberta'),\n('Analista Financeiro Pleno', 'Financeiro', 'Pleno', 'CLT', 'São Paulo', 'Híbrido', 'Excel avançado, contabilidade, ERP', 'VR, VA, plano odontológico', '2025-11-22', 'https://empresa.com/v003', 'Aberta'),\n('Recepcionista Bilíngue', 'Atendimento', 'Júnior', 'CLT', 'Rio de Janeiro', 'Presencial', 'Inglês fluente, simpatia, organização', 'VT, plano de saúde', '2025-11-22', 'https://empresa.com/v004', 'Aberta'),\n('Desenvolvedor Frontend', 'Tecnologia', 'Pleno', 'PJ', 'Remoto', 'Remoto', 'React, JavaScript, Git', 'Horário flexível', '2025-11-22', 'https://empresa.com/v005', 'Aberta'),\n('Coordenador de RH', 'Recursos Humanos', 'Sênior', 'CLT', 'Belo Horizonte', 'Híbrido', 'Gestão de pessoas, legislação trabalhista', 'VR, VA, bônus anual', '2025-11-22', 'https://empresa.com/v006', 'Aberta'),\n('Auxiliar de Limpeza', 'Serviços Gerais', 'Júnior', 'CLT', 'Curitiba', 'Presencial', 'Agilidade, responsabilidade', 'VT, cesta básica', '2025-11-22', 'https://empresa.com/v007', 'Aberta'),\n('Designer Gráfico', 'Design', 'Pleno', 'Freelance', 'Remoto', 'Remoto', 'Photoshop, Illustrator, criatividade', 'Pagamento por projeto', '2025-11-22', 'https://empresa.com/v008', 'Aberta'),\n('Professor de Inglês', 'Educação', 'Sênior', 'CLT', 'Porto Alegre', 'Presencial', 'Licenciatura, fluência, didática', 'Plano de carreira, bônus', '2025-11-22', 'https://empresa.com/v009', 'Aberta'),\n('Operador de Telemarketing', 'Vendas', 'Júnior', 'CLT', 'Salvador', 'Presencial', 'Boa comunicação, resiliência', 'Comissão, VT, VR', '2025-11-22', 'https://empresa.com/v010', 'Aberta');\n*/\n\n/*\nCREATE TABLE IF NOT EXISTS usuarios (\n  id SERIAL PRIMARY KEY,\n  nome VARCHAR(255),\n  telefone VARCHAR(20),\n  email VARCHAR(255),\n  trilha_escolhida VARCHAR(100),\n  perfil_comportamental TEXT\n);\n\nCREATE TABLE IF NOT EXISTS perguntas_comportamentais (\n  id SERIAL PRIMARY KEY,\n  pergunta TEXT NOT NULL\n);\n\nINSERT INTO perguntas_comportamentais (pergunta) VALUES\n('1. Quando recebo instruções detalhadas sobre uma tarefa, eu:\\n\\na) Sigo exatamente como foi orientado.\\n b) Adapto conforme acho melhor.\\n c) Prefiro pedir ajuda para revisar antes de começar.'),\n('2. Em ambientes com regras rígidas de segurança, eu:\\n\\na) Cumpro todas as regras sem exceção.\\n b) Cumpro a maioria, mas ajusto quando necessário.\\n c) Sinto dificuldade em lembrar e seguir tantas regras.'),\n('3. Ao trabalhar em equipe em tarefas operacionais, eu:\\n\\na) Colaboro e mantenho comunicação constante.\\n b) Trabalho bem sozinho, mas ajudo quando chamado.\\n c) Prefiro evitar depender dos outros.'),\n('4. Em situações de pressão ou prazos curtos, eu:\\n\\na) Mantenho calma e foco.\\n b) Fico um pouco tenso, mas entrego.\\n c) Tenho dificuldade em manter o ritmo.'),\n('5. Quando surge um problema inesperado na operação, eu:\\n\\na) Analiso rapidamente e busco solução segura.\\n b) Tento resolver do meu jeito.\\n c) Aguardo orientação para não correr riscos.'),\n('6. Em relação ao aprendizado de novas máquinas, sistemas ou procedimentos, eu:\\n\\na) Gosto de aprender e me adapto rápido.\\n b) Levo um tempo, mas aprendo.\\n c) Prefiro continuar no que já conheço.'),\n('7. Minha postura típica no ambiente de trabalho é:\\n\\na) Disciplinada e organizada.\\n b) Flexível, mas às vezes desorganizada.\\n c) Improvisada, resolvo conforme o momento.'),\n('8. Como lido com feedback de supervisores?\\n\\na) Recebo bem e ajusto o necessário.\\n b) Aceito, mas às vezes discordo.\\n c) Fico desconfortável e evito.'),\n('9. Quando preciso seguir rotinas repetitivas, eu:\\n\\na) Não me incomodo, mantenho constância.\\n b) Fico entediado, mas faço.\\n c) Busco mudar o processo sempre que possível.'),\n('10. Sobre comunicação no ambiente de trabalho:\\n\\na) Sou claro e direto, principalmente em situações críticas.\\n b) Falo apenas quando necessário.\\n c) Tenho dificuldade em me expressar.');\n\nCREATE TABLE IF NOT EXISTS respostas_comportamentais (\n  id SERIAL PRIMARY KEY,\n  id_usuario INTEGER NOT NULL,\n  id_pergunta INTEGER NOT NULL,\n  resposta TEXT,\n  data_resposta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  FOREIGN KEY (id_pergunta) REFERENCES perguntas_comportamentais(id)\n);\n*/\n\n/*\nALTER TABLE usuarios\nADD COLUMN chatId VARCHAR(100),\nADD COLUMN curriculo TEXT;\n*/\n/*\n-- Script PostgreSQL: tabela de cursos na região do Pecém\nBEGIN;\n\n-- Cria a tabela (se não existir)\nCREATE TABLE IF NOT EXISTS cursos_pecem (\n    id SERIAL PRIMARY KEY,\n    instituicao TEXT NOT NULL,\n    curso TEXT NOT NULL,\n    duracao TEXT,\n    perfil_profissional TEXT,\n    fonte_url TEXT,\n    criado_em TIMESTAMP WITH TIME ZONE DEFAULT now()\n);\n\n-- Inserções\nINSERT INTO cursos_pecem (instituicao, curso, duracao, perfil_profissional, fonte_url) VALUES\n('Grupo Incatep (Porto do Pecém)',\n 'Treinamentos portuários (ex.: operação de empilhadeira, guindaste, movimentação de carga, arrumação/estivagem)',\n NULL,\n 'Operadores portuários, conferentes, operadores de empilhadeira e guindastes; foco em segurança e movimentação de cargas',\n 'https://grupoincatep.com.br/');\n\nINSERT INTO cursos_pecem (instituicao, curso, duracao, perfil_profissional, fonte_url) VALUES\n('Grupo Incatep (Porto do Pecém)',\n 'Peação e Desapeação de Cargas (exemplo de treinamento encontrado)',\n '40 h',\n 'Profissional de movimentação de cargas e operações portuárias, com ênfase em técnicas e segurança',\n 'https://grupoincatep.com.br/');\n\nINSERT INTO cursos_pecem (instituicao, curso, duracao, perfil_profissional, fonte_url) VALUES\n('IFCE - Campus Pecém',\n 'Técnico Subsequente em Segurança do Trabalho',\n '~1,5 ano / 1200 h',\n 'Técnico em Segurança do Trabalho: prevenção de acidentes, inspeções, programas de controle de riscos',\n 'https://portal.ifce.edu.br/campus/pecem/');\n\nINSERT INTO cursos_pecem (instituicao, curso, duracao, perfil_profissional, fonte_url) VALUES\n('IFCE - Campus Pecém',\n 'Tecnologia em Mecatrônica Industrial (tecnólogo)',\n '3 anos',\n 'Técnico/tecnólogo para automação industrial, manutenção, controle de sistemas mecânicos e eletromecânicos',\n 'https://portal.ifce.edu.br/campus/pecem/');\n\nINSERT INTO cursos_pecem (instituicao, curso, duracao, perfil_profissional, fonte_url) VALUES\n('IFCE - Campus Pecém',\n 'Especialização / Pós-graduação em Hidrogênio Verde',\n '360 h / 18 meses',\n 'Especialista em hidrogênio verde: atuação em projetos de energia, pesquisa e empresas de transição energética',\n 'https://portal.ifce.edu.br/campus/pecem/');\n\nINSERT INTO cursos_pecem (instituicao, curso, duracao, perfil_profissional, fonte_url) VALUES\n('IFCE - Campus Pecém',\n 'Cursos FIC (Formação Inicial e Continuada) - variados',\n NULL,\n 'Capacitação rápida para operadores industriais, eletricistas, auxiliares e funções técnicas de apoio',\n 'https://portal.ifce.edu.br/campus/pecem/');\n\nINSERT INTO cursos_pecem (instituicao, curso, duracao, perfil_profissional, fonte_url) VALUES\n('Complexo do Pecém',\n 'Cursos profissionalizantes para empresas e comunidades (ex.: Eletricista instalador predial, informática para o trabalho)',\n 'Ex.: Eletricista instalador predial — 40 dias (exemplo informado em anúncio)',\n 'Profissionais para atuar no Complexo (eletricistas, técnicos de suporte, mão de obra qualificada local)',\n 'https://www.complexodopecem.com.br/cursos-profissionalizantes-para-empresas-do-pecem/');\n\nINSERT INTO cursos_pecem (instituicao, curso, duracao, perfil_profissional, fonte_url) VALUES\n('CT Pecém (Centro de Treinamento do Pecém)',\n 'Cursos EAD de Segurança do Trabalho (NRs) — NR-10, NR-13, NR-18, NR-33, NR-35, CIPA, etc.',\n NULL,\n 'Profissionais industriais, técnicos de segurança, operadores, encarregados que precisam aderir às NRs',\n 'https://ctpecem.com.br/cursos-ead');\n\nINSERT INTO cursos_pecem (instituicao, curso, duracao, perfil_profissional, fonte_url) VALUES\n('CT Pecém (Centro de Treinamento do Pecém)',\n 'Treinamentos presenciais e EAD (catálogo variado de cursos de segurança e operação)',\n NULL,\n 'Trabalhadores da indústria e setores relacionados à operação, manutenção e segurança',\n 'https://ctpecem.com.br/');\n\nCOMMIT;\n\n-- Exemplo de consulta\n-- SELECT * FROM cursos_pecem ORDER BY instituicao, id;\n*/\n\n-- Criar tabela noticias\n/*\nCREATE TABLE noticias (\n\n    id SERIAL PRIMARY KEY,\n\n    titulo VARCHAR(255) NOT NULL,\n\n    data_publicacao DATE NOT NULL,\n\n    conteudo TEXT NOT NULL\n\n);\n\n\n\n-- Inserir notícias\n\nINSERT INTO noticias (titulo, data_publicacao, conteudo) VALUES\n\n(\n\n    'Comitiva do Ministério de Portos e Aeroportos visita o Complexo do Pecém nesta sexta (21)',\n\n    '2025-11-21',\n\n    'O Complexo do Pecém recebeu nesta sexta-feira (21) uma comitiva do Ministério de Portos e Aeroportos (MPor), liderada pelo ministro em exercício, Tomé Franca. Ele foi recebido pelo presidente Max Quintino, que apresentou os principais projetos, obras e investimentos que estão em andamento no Complexo do Pecém. Após a reunião, o ministro pode fazer uma visita ao Porto do Pecém, conhecendo de perto como funciona a operação de um dos principais terminais portuários do Nordeste e do Brasil.\\n\\n“Ficamos muito felizes em visitar o Porto do Pecém, que tem uma importância significativa para o PIB do Ceará, para o crescimento e desenvolvimento de toda a região do Norte e Nordeste do Brasil. Quase 100 mil empregos diretos e indiretos, o que demonstra a potência e a pujança do setor portuário no nosso País. Pudemos conhecer a operação do Porto, um porto muito focado em granéis sólidos, em granéis líquidos e minerais, em contêineres e, em breve também, em automóveis, para que daqui do Porto possam ser geradas mais oportunidades para o povo do Ceará, para o povo do Nordeste e para o povo brasileiro”, destacou Tomé Franca.\\n\\nA comitiva contou também com a presença de Thairyne Oliveira, secretária executiva adjunta do MPor. Também acompanharam a visita Bruno Gaspar, secretário executivo Planejamento e Gestão Interna do Turismo do Ceará; e Rebeca Oliveira, vice-presidente Financeira do Complexo do Pecém.\\n\\n“Estamos muito contentes com essa visita, porque sabemos da importância da relação que construímos com o Ministério. Sabemos que o desenvolvimento de um Complexo como esse é importante não só para o Ceará, mas para todo o Nordeste do País. Somos muito gratos com o apoio que o Governo Federal sempre nos dá e temos a certeza de que muitos projetos em parceria virão”, apontou Max Quintino.'\n\n),\n\n(\n\n    'Complexo do Pecém marca presença no XII Cidesport com apresentação de artigos técnicos',\n\n    '2025-11-14',\n\n    'O Complexo do Pecém está participando do XII Congresso Internacional de Desempenho Portuário (Cidesport), evento técnico-científico que aconteceu de 12 a 14 de novembro no Majestic Palace Hotel, em Florianópolis (SC). Neste ano, o evento contou com a presença de três dos sete colaboradores da Companhia que submeteram artigos voltados para temas como Meio Ambiente, Inovação e Engenharia.\\n\\nOrganizado pela Universidade do Sul de Santa Catarina (Unisul), em parceria com a Universidade Federal de Santa Catarina (UFSC) e a Universidade de Valência (Espanha), o congresso reúne pesquisadores, gestores e profissionais do setor portuário para discutir práticas inovadoras e estratégias de melhoria de desempenho.\\n\\nRepresentando a companhia cearense no congresso estiveram Felipe Guimarães, gerente de Inovação, Rubens Oliveira de Couto, analista de Negócios Portuários, e Igor Marreira, engenheiro da Gerência de Desenvolvimento e Infraestrutura. Eles compartilham suas pesquisas nesta sexta-feira, 14, para o público presente no encontro.\\n\\n“Participar do Cidesport é uma oportunidade estratégica para o Complexo do Pecém em um ambiente rico para troca de experiências e apresentação de soluções inovadoras. Ao trazer nossos estudos, mostramos como estamos alinhados às melhores práticas do setor e reforçamos nosso compromisso com a inovação e a sustentabilidade, pilares fundamentais para o futuro da atividade portuária”, afirmou Felipe Guimarães.\\n\\nConfira os sete artigos submetidos por profissionais do Complexo do Pecém:\\n\\n“Do melhor ponto de passagem ao diagnóstico socioambiental participativo: avanços do subprograma de compensação da atividade da pesca (PCAP) no Terminal Portuário do Pecém (TPP)”;\\n“Melhor ponto de passagem: travessia segura de jangadeiros na área do Terminal Portuário do Pecém”;\\n“Território, comunidade e porto: a cartografia social como ferramenta de desenvolvimento sustentável”;\\n“Proteção ambiental e a manutenção de práticas, usos e atividades socioeconômicas: os benefícios para comunidade com a implantação do terminal offshore do Porto do Pecém”;\\n“Pioneirismo na investigação marítima portuária: aplicação de veículo de superfície não tripulado (USV) para caracterização geofísica e hidrográfica de alta resolução”;\\n“Inovação em processos no setor portuário: a implementação de um ecossistema digital de custo zero para gestão de obras de infraestrutura”;\\n“O papel da tokenização para impulsionar as exportações de hidrogênio verde produzido no Complexo Industrial e Portuário do Pecém (CIPP).'\n\n),\n\n(\n\n    'Complexo do Pecém conquista Selo de Sustentabilidade e se destaca entre os portos mais verdes do Brasil',\n\n    '2025-11-13',\n\n    'O Complexo do Pecém conquistou o Selo de Sustentabilidade concedido pelo Ministério de Portos e Aeroportos (MPOR). A cerimônia oficial de entrega da certificação aconteceu na última quarta-feira, 12, em Belém (PA), como parte da programação da COP30, conferência global sobre mudanças climáticas que reunirá lideranças governamentais, empresariais e acadêmicas de todo o mundo. O reconhecimento posiciona o Pecém entre os portos mais sustentáveis do país, destacando suas boas práticas nas áreas ambiental, social e de governança.\\n\\nCom liderança da Gerência de ESG, responsável por coordenar as políticas de sustentabilidade e estreitar o diálogo com as comunidades vizinhas, a certificação é resultado de um esforço coletivo que envolve diversas áreas do Complexo, segundo explica Natasha Auto, gerente da área. “O selo simboliza mais do que uma certificação. Representa o reconhecimento de um compromisso que orienta o crescimento do Complexo. Reforça também a vocação do Porto do Pecém para crescer de maneira inovadora, inclusiva e ambientalmente responsável. É um incentivo para continuarmos evoluindo com base em práticas que geram impacto positivo para o território e para o planeta”, afirma.'\n\n);\n*/\n\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        0,
+        0
+      ],
+      "id": "57995f4a-4fd7-4bc0-b62a-c4dd00da1d30",
+      "name": "Execute a SQL query",
+      "credentials": {
+        "postgres": {
+          "id": "Y0GFmc6YeIxGARts",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Banco de dados\nAssim que o Workflow for executado, a tabela será criada, se não foi criada ainda, e os valores adicionados",
+        "height": 272,
+        "width": 416,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        -112
+      ],
+      "id": "aa481109-2221-4946-b4ab-da5a5caf97c7",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Agente de candidato para todas as ações testes comportamentais, com perguntas e respostas.",
+        "text": "=# Visão Geral\n\nVocê é um assistente de gerenciamento de comportamento de candidatos. Suas responsabilidades incluem fazer perguntas de testes comportamentais e obter respostas dos candidatos \n\n**Gerenciamento de Teste Comportamental**\n\n* Use \"Select Questions\" para selecionar perguntas. Deverá fazer uma pergunta por vez. Por exemplo, no fluxo:\n\n1. Você fará a primeira pergunta;\n2. O candidato responderá;\n3. Você fará a segunda pergunta e [2].\n\n* Baseado na resposta do candidato, você irá classificar a resposta em apenas \"A\", \"B\" e \"C\", por exemplo:\n\n1. Se o usuário falar \"Alternativa a\", a classificação é \"A\". O mesmo vale para casos similares.\n\n* Use \"Insert Answers\" para inserir a classificação das respostas do usuário, podendo ser somente, \"A\", \"B\" ou \"C\".\n* Use \"Select Answers\" para verificar se o teste foi concluído e qual foi a classificação de resposta com mais registros. A partir da identificação da resposta mais registrada, use \"Candidate AI\" para atualizar o perfil comportamental do candidato baseado na clasificação abaixo:\n\n* *Maioria A:* Perfil disciplinado, seguro, estável \n* *Maioria B:* Perfil adaptável, porém irregular\n* *Maioria C:* Perfil que precisa de acompanhamento e treinamento mais estruturado em ambientes de risco.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        2816,
+        496
+      ],
+      "id": "7f24cfa3-e3eb-4eab-bb1a-d20200eed977",
+      "name": "Behavioral Testing AI"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Selecione as linhas da tabela no Postgres.",
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "perguntas_comportamentais",
+          "mode": "list",
+          "cachedResultName": "perguntas_comportamentais"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', `Você retornará uma questão somente até o candidato respondê-la e, somente a partir daí, retornar outra questão.`, 'boolean') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        2960,
+        736
+      ],
+      "id": "e45b90de-63d8-4c2a-90bf-1ee669083737",
+      "name": "Select Questions",
+      "credentials": {
+        "postgres": {
+          "id": "Y0GFmc6YeIxGARts",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Inserir as linhas da tabela no Postgres",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "respostas_comportamentais",
+          "mode": "list",
+          "cachedResultName": "respostas_comportamentais"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id', ``, 'number') }}",
+            "id_usuario": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id_usuario', ``, 'number') }}",
+            "id_pergunta": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id_pergunta', ``, 'number') }}",
+            "resposta": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('resposta', ``, 'string') }}",
+            "data_resposta": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('data_resposta', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "id_usuario",
+              "displayName": "id_usuario",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "id_pergunta",
+              "displayName": "id_pergunta",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "resposta",
+              "displayName": "resposta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "data_resposta",
+              "displayName": "data_resposta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        3040,
+        592
+      ],
+      "id": "c6130012-0bbf-4d70-b0a3-0ea1fadd5d09",
+      "name": "Insert Answers",
+      "credentials": {
+        "postgres": {
+          "id": "Y0GFmc6YeIxGARts",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Selecione as linhas da tabela no Postgres somente para verificar os dados do usuário. Usar somente como base de consulta.",
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "usuarios",
+          "mode": "list",
+          "cachedResultName": "usuarios"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', `Você verificará somente se todas as colunas do usuário estão completas ou se o candidato está cadastrado.`, 'boolean') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        3328,
+        752
+      ],
+      "id": "cc74ec6d-2c1f-4d79-ba48-eb90b421c856",
+      "name": "Select Candidate",
+      "credentials": {
+        "postgres": {
+          "id": "Y0GFmc6YeIxGARts",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Insira dados do candidato na tabela somente quando o candidato não foi cadastrado ainda.",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "respostas_comportamentais",
+          "mode": "list",
+          "cachedResultName": "respostas_comportamentais"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id', ``, 'number') }}",
+            "id_usuario": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id_usuario', ``, 'number') }}",
+            "id_pergunta": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id_pergunta', ``, 'number') }}",
+            "resposta": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('resposta', ``, 'string') }}",
+            "data_resposta": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('data_resposta', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "id_usuario",
+              "displayName": "id_usuario",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "id_pergunta",
+              "displayName": "id_pergunta",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "resposta",
+              "displayName": "resposta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "data_resposta",
+              "displayName": "data_resposta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        3424,
+        656
+      ],
+      "id": "913293a6-5f74-40a6-8948-ed89c85ce9ba",
+      "name": "Insert Candidate",
+      "credentials": {
+        "postgres": {
+          "id": "Y0GFmc6YeIxGARts",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Atualize os dados da tabela no Postgres que são de candidatos que não foram identificados na tabela ainda.",
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "usuarios",
+          "mode": "list",
+          "cachedResultName": "usuarios"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id', ``, 'number') }}",
+            "id_usuario": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id_usuario', ``, 'number') }}",
+            "id_pergunta": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id_pergunta', ``, 'number') }}",
+            "resposta": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('resposta', ``, 'string') }}",
+            "data_resposta": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('data_resposta', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "id_usuario"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "id_usuario",
+              "displayName": "id_usuario",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "id_pergunta",
+              "displayName": "id_pergunta",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "resposta",
+              "displayName": "resposta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "data_resposta",
+              "displayName": "data_resposta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        3552,
+        592
+      ],
+      "id": "df73c625-5139-4819-bb0b-64f2e07e5ef2",
+      "name": "Update Candidate",
+      "credentials": {
+        "postgres": {
+          "id": "Y0GFmc6YeIxGARts",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Agente de candidato para todas as ações relacionadas a consultar, cadastrar e alterar dados dos usuários",
+        "text": "=# Visão Geral\n\nVocê é um assistente de gerenciamento de candidatos. Suas responsabilidades incluem buscar candidatos e verificar se todos os campos, ou seja, se o perfil do usuário está completo. Se não tiver completo, você deverá atualizar os dados dele que ele te encaminhar. \nCaso não houver o candidato cadastrado, cadastre-o.\n\n**Gerenciamento de Candidatos**\n\n* Use \"Select Candidate\" para consultar se todos os dados estão completos ou se o candidato não foi cadastrado ainda.\n* Use \"Insert Candidate\" caso o candidato não estiver cadastrado ainda.\n* Use \"Update Candidate\" caso houver dados para atualizar e/ou se tiver cadastro incompleto.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        3184,
+        496
+      ],
+      "id": "688bbebd-5431-4996-a3ba-08b3a99802a4",
+      "name": "Candidate AI"
+    },
+    {
+      "parameters": {
+        "content": "## Entrada de dados",
+        "height": 288,
+        "width": 864,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        368
+      ],
+      "id": "775b3c47-c03a-4241-bf08-8889b8edfacd",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Tratamento de dados \n",
+        "height": 544,
+        "width": 1504
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        704,
+        256
+      ],
+      "id": "7ab229af-c4fd-47e0-a23d-d143b48fda58",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "options": {
+          "temperature": 0.2
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        2336,
+        576
+      ],
+      "id": "578e596f-f90d-430b-a3f1-bef88060dccd",
+      "name": "Google Gemini Chat Model Agent",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "56sPSpTM7ScKV6tj",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.chatId }}",
+        "sessionTTL": 1800
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryRedisChat",
+      "typeVersion": 1.5,
+      "position": [
+        2496,
+        544
+      ],
+      "id": "3bd78bd8-5ab5-4e21-a08f-aab3f34ae004",
+      "name": "Redis Chat Memory",
+      "credentials": {
+        "redis": {
+          "id": "1lAfs1S85bkUdxAr",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "temperature": 0.2
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        2528,
+        816
+      ],
+      "id": "70fcdb60-03a0-47b7-a6ba-1ece1878606b",
+      "name": "Google Gemini Chat Model Agent1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "56sPSpTM7ScKV6tj",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "temperature": 0.2
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        2816,
+        640
+      ],
+      "id": "85601049-f03c-46a4-8b70-9c8d5293dd2e",
+      "name": "Google Gemini Chat Model Agent2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "56sPSpTM7ScKV6tj",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "temperature": 0.2
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        3184,
+        640
+      ],
+      "id": "4eae31c6-b769-4826-8658-8cb6aced5b73",
+      "name": "Google Gemini Chat Model Agent3",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "56sPSpTM7ScKV6tj",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message }}",
+        "options": {
+          "systemMessage": "=# Visão Geral\n\nVocê é um agente recrutador. Você deve auxiliar o candidato que se comunica com você através da plataforma WhatsApp. Espera-se receber o currículo do candidato, dados dele interesse dele pelo Porto de Pecém.\n\n## Ferramentas\n\n* **Think**: Use sempre esta ferramenta PRIMEIRO antes de tomar qualquer decisão ou seguir o fluxo\n* **Recommendation AI**: Use esta ferramenta para obter e disponibilizar vagas, capacitações e cursos *solicitadas pelo usuario* e que condizem com o perfil profissional dele\n* **Behavioral Testing AI**: Use esta ferramenta para fazer testes comportamentais quando *solicitados pelo candidato*\n* **Candidate AI**: Use esta ferramenta para manipular dados do usuário-candidato, como consultar se o usuário já existe no registro, atualizar algum dado e até cadastrar o usuário caso não haja registro do mesmo\n\n## Instruções\n\n1. Acione as ferramentas necessárias com base no pedido do usuário\n2. Consulte {{ $json.chatId }} em **Candidate AI** para verificar se já tem registro e se não há nada pendente no cadastro do usuário\n2.1 Você pode solicitar os dados necessários para cadastrar o usuário, sendo esses dados apenas o nome, email e telefone, pegue o telefone pela sessão, pois apenas uma pessoa tem um número\n2.2 Se o usuário mandar o currículo dele em PDF, armazene as informações dele separadamente. Use o **Candidate AI** para isso, além de armazenar todas as informações do PDF no campo específico \"curriculo\" na tabela \"usuarios\"\n\n## Exemplo\n\n1.\n\n* Entrada: Gostaria de fazer um teste\n\n  * Ação: Use o **Behavioral Testing AI** para obter e realizar as perguntas\n\n* Saída: **Pergunta selecionada**\n\n* Entrada: **Resposta do usuário**\n\n  * Ação: use o **Behavioral Testing AI** agora para armazenar as respostas.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        2464,
+        384
+      ],
+      "id": "0da6c387-2651-412a-975d-2e86fc4ca933",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Selecione as linhas da tabela no Postgres.",
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "respostas_comportamentais",
+          "mode": "list",
+          "cachedResultName": "respostas_comportamentais"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', `Você verificará se todas as respostas foram respondidas. Caso tenham sido respondidas, faça uma contagem de qual classificação entre \"A\", \"B\" ou \"C\" possui mais registro.`, 'boolean') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        3072,
+        864
+      ],
+      "id": "e44f5fd5-a828-44ca-b217-4e4af8a0507c",
+      "name": "Select Answers",
+      "credentials": {
+        "postgres": {
+          "id": "Y0GFmc6YeIxGARts",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "description": "=Sempre responda de maneira curta e objetiva, sem divagações ou conversas paralelas fora do escopo do seu projeto, que é entender o candidato e recomendar vagas, oportunidades e novidades para ele.\n\nUse esta ferramenta para planejar e avaliar o próximo passo antes de agir.\n\nVocê jamais deve solicitar qualquer tipo de documentação do usuário ou dado sensível do usuário como RG e CPF, com exceção do currículo em PDF.\n\nVocê também não pode solicitar ou indicar que o usuário te envie documentos ou dados pessoais e sensíveis; caso ele envie mesmo assim, você jamais deve aceitar ou registrar no sistema ou banco de dados as documentações pessoais do usuário, exceto o curriculo em PDF. Caso números como RG ou CPF estejam no currículo, você não deve registrar. Informe especificamente ao usuário que você não aceita esse tipo de informação e que não se deve fornece-las a agentes de IA."
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1.1,
+      "position": [
+        2688,
+        560
+      ],
+      "id": "e24632ca-df2e-4306-aa5e-fd7ac3baf51e",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "noticias",
+          "mode": "list",
+          "cachedResultName": "noticias"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        2800,
+        912
+      ],
+      "id": "4b8e050b-3a8e-4e2c-91cb-93ed8c08db3b",
+      "name": "Get Novidades",
+      "credentials": {
+        "postgres": {
+          "id": "Y0GFmc6YeIxGARts",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Selecione as linhas da tabela no Postgres que se enquadram aos interesses do candidato.",
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "vagas",
+          "mode": "list",
+          "cachedResultName": "vagas"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', `Você retornará somente os valores que condizem com o perfil do candidato.`, 'boolean') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        2672,
+        896
+      ],
+      "id": "424144d2-d0f6-40ef-898a-b7bfef685d18",
+      "name": "Get Jobs",
+      "credentials": {
+        "postgres": {
+          "id": "Y0GFmc6YeIxGARts",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "cursos_pecem",
+          "mode": "list",
+          "cachedResultName": "cursos_pecem"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        2912,
+        960
+      ],
+      "id": "eb1d5d6b-982e-4a9b-862f-f532034dd945",
+      "name": "Get Capacitacoes",
+      "credentials": {
+        "postgres": {
+          "id": "Y0GFmc6YeIxGARts",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Filtrar texto",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Filtrar mídia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtrar mídia": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe a recording": {
+      "main": [
+        [
+          {
+            "node": "Mensagem de áudio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensagem de áudio": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Tratar mensagem de PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tratar mensagem de PDF": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Filtrar texto": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Seen": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recommendation AI": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Behavioral Testing AI": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select Questions": {
+      "ai_tool": [
+        [
+          {
+            "node": "Behavioral Testing AI",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert Answers": {
+      "ai_tool": [
+        [
+          {
+            "node": "Behavioral Testing AI",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select Candidate": {
+      "ai_tool": [
+        [
+          {
+            "node": "Candidate AI",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert Candidate": {
+      "ai_tool": [
+        [
+          {
+            "node": "Candidate AI",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Candidate": {
+      "ai_tool": [
+        [
+          {
+            "node": "Candidate AI",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Candidate AI": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "Behavioral Testing AI",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model Agent": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model Agent1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Recommendation AI",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model Agent2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Behavioral Testing AI",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model Agent3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Candidate AI",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send Seen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select Answers": {
+      "ai_tool": [
+        [
+          {
+            "node": "Behavioral Testing AI",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Novidades": {
+      "ai_tool": [
+        [
+          {
+            "node": "Recommendation AI",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Jobs": {
+      "ai_tool": [
+        [
+          {
+            "node": "Recommendation AI",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Capacitacoes": {
+      "ai_tool": [
+        [
+          {
+            "node": "Recommendation AI",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "6d62c574-d7c8-47f1-bd8f-17b6f7f0c32c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e4e7d32bed915c9769470e57f97904c0d5636880dd1c6d691dbc505ced4d7387"
+  },
+  "id": "CehQLiohmmP6jlou",
+  "tags": []
+}
